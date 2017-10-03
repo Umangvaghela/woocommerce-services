@@ -33,7 +33,7 @@ const AddressFields = ( props ) => {
 		normalized,
 		selectNormalized,
 		normalizationInProgress,
-		allowChangeCountry,
+		allowedCountries,
 		group,
 		storeOptions,
 		errors,
@@ -57,7 +57,12 @@ const AddressFields = ( props ) => {
 
 	const fieldErrors = _.isObject( errors ) ? errors : {};
 	const getId = ( fieldName ) => group + '_' + fieldName;
-	const getValue = ( fieldName ) => values[ fieldName ] || '';
+	const getValue = ( fieldName ) => {
+		if ( 'country' === fieldName && ! values[ fieldName ] ) {
+			return 'US';
+		}
+		return values[ fieldName ] || '';
+	};
 	const updateValue = ( fieldName ) => ( newValue ) => props.updateAddressValue( group, fieldName, newValue );
 	const getPhoneNumber = ( value ) => getPlainPhoneNumber( value, getValue( 'country' ) );
 	const updatePhoneValue = ( value ) => props.updateAddressValue( group, 'phone', getPhoneNumber( value ) );
@@ -128,7 +133,7 @@ const AddressFields = ( props ) => {
 				id={ getId( 'country' ) }
 				title={ __( 'Country' ) }
 				value={ getValue( 'country' ) }
-				disabled={ ! allowChangeCountry }
+				allowedCountries={ allowedCountries }
 				countriesData={ storeOptions.countriesData }
 				updateValue={ updateValue( 'country' ) }
 				error={ fieldErrors.country } />
@@ -146,7 +151,7 @@ AddressFields.propTypes = {
 	isNormalized: PropTypes.bool.isRequired,
 	normalized: PropTypes.object,
 	selectNormalized: PropTypes.bool.isRequired,
-	allowChangeCountry: PropTypes.bool.isRequired,
+	allowedCountries: PropTypes.array.isRequired,
 	storeOptions: PropTypes.object.isRequired,
 	errors: PropTypes.oneOfType( [
 		PropTypes.object,
