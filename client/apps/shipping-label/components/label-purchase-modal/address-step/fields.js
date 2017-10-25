@@ -33,7 +33,6 @@ const AddressFields = ( props ) => {
 		normalized,
 		selectNormalized,
 		normalizationInProgress,
-		allowedCountries,
 		group,
 		storeOptions,
 		errors,
@@ -133,7 +132,6 @@ const AddressFields = ( props ) => {
 				id={ getId( 'country' ) }
 				title={ __( 'Country' ) }
 				value={ getValue( 'country' ) }
-				allowedCountries={ allowedCountries }
 				countriesData={ storeOptions.countriesData }
 				updateValue={ updateValue( 'country' ) }
 				error={ fieldErrors.country } />
@@ -151,7 +149,6 @@ AddressFields.propTypes = {
 	isNormalized: PropTypes.bool.isRequired,
 	normalized: PropTypes.object,
 	selectNormalized: PropTypes.bool.isRequired,
-	allowedCountries: PropTypes.array.isRequired,
 	storeOptions: PropTypes.object.isRequired,
 	errors: PropTypes.oneOfType( [
 		PropTypes.object,

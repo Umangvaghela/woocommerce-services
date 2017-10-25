@@ -47,7 +47,6 @@ export default ( formData, labelsData, paperSize, storeOptions, paymentMethod, n
 				ignoreValidation: hasOriginAddress ? null : mapValues( formData.origin, () => true ),
 				selectNormalized: true,
 				normalizationInProgress: false,
-				allowedCountries: [ 'US', 'PR' ],
 			},
 			destination: {
 				values: formData.destination,
@@ -58,7 +57,6 @@ export default ( formData, labelsData, paperSize, storeOptions, paymentMethod, n
 				ignoreValidation: hasDestinationAddress ? null : mapValues( formData.destination, () => true ),
 				selectNormalized: true,
 				normalizationInProgress: false,
-				allowedCountries: [ 'US', 'PR' ],
 			},
 			packages: {
 				all: formData.all_packages,
