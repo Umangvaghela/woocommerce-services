@@ -56,12 +56,7 @@ const AddressFields = ( props ) => {
 
 	const fieldErrors = _.isObject( errors ) ? errors : {};
 	const getId = ( fieldName ) => group + '_' + fieldName;
-	const getValue = ( fieldName ) => {
-		if ( 'country' === fieldName && ! values[ fieldName ] ) {
-			return 'US';
-		}
-		return values[ fieldName ] || '';
-	};
+	const getValue = ( fieldName ) => values[ fieldName ] || '';
 	const updateValue = ( fieldName ) => ( newValue ) => props.updateAddressValue( group, fieldName, newValue );
 	const getPhoneNumber = ( value ) => getPlainPhoneNumber( value, getValue( 'country' ) );
 	const updatePhoneValue = ( value ) => props.updateAddressValue( group, 'phone', getPhoneNumber( value ) );
